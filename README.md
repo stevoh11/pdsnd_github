@@ -16,5 +16,12 @@ This project takes raw data gathered from **csv** documents and creates a statis
 * washington.csv
 
 ### Credits
+This links to python script that checks
+the type of operating system, which is used
+for my clear screen function.
 [Detect Operating System](https://www.webucator.com/how-to/how-check-the-operating-system-with-python.cfm)<br />
+
+This links to python script that
+checks the OS name and platform, which
+is used for my clear screen function.
 [Get OS Name and Platform](https://www.w3resource.com/python-exercises/python-basic-exercise-43.php)
