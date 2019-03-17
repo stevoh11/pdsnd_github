@@ -110,21 +110,21 @@ def time_stats(df):
     # extract month from the Start Time column to create a month column
     df['month'] = df['Start Time'].dt.month
 
-    # find the most popular month
+    # find most popular month
     popular_month = df['month'].mode()[0]
     print('Most Popular Month: {}'.format(popular_month))
 
     # extract day from the Start Time column to create a day column
     df['day'] = df['Start Time'].dt.day
 
-    # find the most popular day
+    # find most popular day
     popular_day = df['day'].mode()[0]
     print('Most Popular Day: {}'.format(popular_day))
 
     # extract hour from the Start Time column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
 
-    # find the most popular start hour
+    # find most popular start hour
     popular_hour = df['hour'].mode()[0]
     print('Most Popular Start Hour: {}'.format(popular_hour))
 
@@ -139,7 +139,7 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # find most common start station
+    # find most popular start station
     popular_start_station = df['Start Station'].mode()[0]
     print('Most Popular Start Station: {}'.format(popular_start_station))
     print('Start Station Counts: {}\n'.format(df['Start Station'].value_counts()[popular_start_station]))
@@ -149,7 +149,7 @@ def station_stats(df):
     print('Most Popular End Station: {}'.format(popular_end_station))
     print('End Station Counts: {}\n'.format(df['End Station'].value_counts()[popular_end_station]))
 
-    # find most frequent combination of start station and end station trip
+    # combine Start Station and End Station to find total trips
     total_trip = df['Start Station'] + ' - ' + df['End Station']
 
     # find most frequent trip
@@ -168,11 +168,11 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # find the sum of all travel times
+    # find sum of all travel times
     total_travel_time = df['Trip Duration'].sum()
     print('Total Travel Time: {}'.format(total_travel_time))
 
-    # find the mean (avg) travel time
+    # find avg travel time
     avg_travel_time = df['Trip Duration'].mean()
     print('Average Travel Time: {}'.format(avg_travel_time))
 
@@ -191,8 +191,8 @@ def user_stats(df):
     user_types = df['User Type'].value_counts()
     print('User Types: \n{}\n'.format(user_types))
 
-    # This try/exception code block handles KeyErrors for Washington filter
-    # Washington csv does not have Gender or Birth Year columns
+    # this try/exception code block handles KeyErrors for Washington filter
+    # washington csv does not have Gender or Birth Year columns
     try:
         # check if Gender column exists and count gender types
         gender_types = df['Gender'].value_counts()
