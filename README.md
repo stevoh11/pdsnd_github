@@ -1,15 +1,21 @@
 ### Date created
-Include the date you created this project and README file.
+01-20-2019
 
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+This project allows the user to explore bike rental data from different cities such as Chicago, New York, and Washington through filtered results.
+
+This project takes raw data gathered from csv documents and creates a statistical analysis of bike share usage patterns.   
 
 ### Files used
-Include the files used
+bikeshare.py
+chicago.csv
+new_york_city.csv
+washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+https://www.webucator.com/how-to/how-check-the-operating-system-with-python.cfm
 
+https://www.w3resource.com/python-exercises/python-basic-exercise-43.php
