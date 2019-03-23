@@ -200,7 +200,7 @@ def user_stats(df):
         # check if Birth Year column exists and find min, max, and avg birth year
         earliest_birth_year = df['Birth Year'].min()
         recent_birth_year = df['Birth Year'].max()
-        common_birth_year = df['Birth Year'].mode()[0]
+        popular_birth_year = df['Birth Year'].mode()[0]
     except KeyError:
         # print strings if errors occur
         print('Gender column not available. \nCannot display statistics.\n')
@@ -212,7 +212,7 @@ def user_stats(df):
 
         print('Earliest Birth Year: {}'.format(int(earliest_birth_year)))
         print('Recent Birth Year: {}'.format(int(recent_birth_year)))
-        print('Most Popular Birth Year: {}'.format(int(common_birth_year)))
+        print('Most Popular Birth Year: {}'.format(int(popular_birth_year)))
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -222,9 +222,9 @@ def user_stats(df):
 def raw_data(df):
     """ Accesses csv doc and displays 5 rows of its raw data at a time """
 
-    raw_data_request = input('\nWould you like to see 5 rows of raw data?  (Yes or No)\n> ').lower()
+    raw_data_prompt = input('\nWould you like to see 5 rows of raw data?  (Yes or No)\n> ').lower()
 
-    if raw_data_request == 'yes':
+    if raw_data_prompt == 'yes':
         print('\nAccessing Raw Data...\n')
         start_time = time.time()
 
@@ -238,8 +238,8 @@ def raw_data(df):
             print("\nThis took %s seconds." % (time.time() - start_time))
             print('-'*40)
 
-            more_data_request = input('\nWould you like to see 5 more rows of raw data?  (Yes or No)\n> ').lower()
-            if more_data_request != 'yes':
+            more_raw_data = input('\nWould you like to see 5 more rows of raw data?  (Yes or No)\n> ').lower()
+            if more_raw_data != 'yes':
                 break
 
 
@@ -255,8 +255,8 @@ def main():
         raw_data(df)
 
         # clear screen if operating system is detected and if program is restarted
-        restart = input('\nWould you like to restart?  (Yes or No)\n> ')
-        if restart.lower() == 'yes':
+        restart_app = input('\nWould you like to restart?  (Yes or No)\n> ')
+        if restart_app.lower() == 'yes':
             # detect system OS
             os_type = platform.system()
             # Darwin is the system name for macOS
@@ -266,7 +266,7 @@ def main():
                 os.system('cls')
             else:
                 continue
-        elif restart.lower() != 'yes':
+        elif restart_app.lower() != 'yes':
             break
 
 
