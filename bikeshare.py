@@ -82,7 +82,6 @@ def load_data(city, month, day):
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
-    # filter by month if applicable
     if month != 'all':
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
@@ -91,7 +90,6 @@ def load_data(city, month, day):
         # filter by month to create the new dataframe
         df = df[df['month'] == month]
 
-    # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
@@ -110,21 +108,18 @@ def time_stats(df):
     # extract month from the Start Time column to create a month column
     df['month'] = df['Start Time'].dt.month
 
-    # find the most popular month
     popular_month = df['month'].mode()[0]
     print('Most Popular Month: {}'.format(popular_month))
 
     # extract day from the Start Time column to create a day column
     df['day'] = df['Start Time'].dt.day
 
-    # find the most popular day
     popular_day = df['day'].mode()[0]
     print('Most Popular Day: {}'.format(popular_day))
 
     # extract hour from the Start Time column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
 
-    # find the most popular start hour
     popular_hour = df['hour'].mode()[0]
     print('Most Popular Start Hour: {}'.format(popular_hour))
 
@@ -139,12 +134,10 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # find most common start station
     popular_start_station = df['Start Station'].mode()[0]
     print('Most Popular Start Station: {}'.format(popular_start_station))
     print('Start Station Counts: {}\n'.format(df['Start Station'].value_counts()[popular_start_station]))
 
-    # find most popular end station
     popular_end_station = df['End Station'].mode()[0]
     print('Most Popular End Station: {}'.format(popular_end_station))
     print('End Station Counts: {}\n'.format(df['End Station'].value_counts()[popular_end_station]))
@@ -152,7 +145,6 @@ def station_stats(df):
     # find most frequent combination of start station and end station trip
     total_trip = df['Start Station'] + ' - ' + df['End Station']
 
-    # find most frequent trip
     most_frequent_trip = total_trip.mode()[0]
     print('Most Frequent Trip: {}'.format(most_frequent_trip))
     print('Frequent Trip Counts: {}'.format(total_trip.value_counts()[most_frequent_trip]))
@@ -168,11 +160,9 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # find the sum of all travel times
     total_travel_time = df['Trip Duration'].sum()
     print('Total Travel Time: {}'.format(total_travel_time))
 
-    # find the mean (avg) travel time
     avg_travel_time = df['Trip Duration'].mean()
     print('Average Travel Time: {}'.format(avg_travel_time))
 
@@ -187,27 +177,22 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # display counts of user types
     user_types = df['User Type'].value_counts()
     print('User Types: \n{}\n'.format(user_types))
 
     # This try/exception code block handles KeyErrors for Washington filter
     # Washington csv does not have Gender or Birth Year columns
     try:
-        # check if Gender column exists and count gender types
         gender_types = df['Gender'].value_counts()
 
-        # check if Birth Year column exists and find min, max, and avg birth year
         earliest_birth_year = df['Birth Year'].min()
         recent_birth_year = df['Birth Year'].max()
         popular_birth_year = df['Birth Year'].mode()[0]
     except KeyError:
-        # print strings if errors occur
         print('Gender column not available. \nCannot display statistics.\n')
 
         print('Birth Year column not available.  \nCannot display statistics.')
     else:
-        # print strings if no errors occur
         print('Gender Types: \n{}\n'.format(gender_types))
 
         print('Earliest Birth Year: {}'.format(int(earliest_birth_year)))
@@ -254,10 +239,9 @@ def main():
         user_stats(df)
         raw_data(df)
 
-        # clear screen if operating system is detected and if program is restarted
+
         restart_app = input('\nWould you like to restart?  (Yes or No)\n> ')
         if restart_app.lower() == 'yes':
-            # detect system OS
             os_type = platform.system()
             # Darwin is the system name for macOS
             if os_type in ('Darwin', 'Linux'):
